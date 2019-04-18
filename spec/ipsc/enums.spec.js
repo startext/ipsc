@@ -1,5 +1,5 @@
-var Enums = require('../../src/Enums.js');
-var Functions = require('../../src/Functions.js');
+var Enums = require('../../src/Enums');
+var Functions = require('../../src/Functions');
 
 describe('Test enums', () => {
   it('Test power factor enum', () => {

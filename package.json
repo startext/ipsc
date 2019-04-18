@@ -11,7 +11,11 @@
     "jasmine": "^3.4.0"
   },
   "description": "Base primitives for scoring",
-  "keywords": [ "IPSC", "stage", "training" ],
+  "keywords": [
+    "IPSC",
+    "stage",
+    "training"
+  ],
   "license": "MIT",
   "publishConfig": {
     "registry": "https://startext.ru:4873/"

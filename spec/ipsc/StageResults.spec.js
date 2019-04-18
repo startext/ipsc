@@ -1,4 +1,5 @@
-var Enums = require('../../src/Enums.js');
+var Enums = require('../../src/Enums');
+var IPSC = require('../../src/index');
 var StageResults = require('../../src/StageResults');
 
 describe('Test stage results', () => {
