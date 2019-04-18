@@ -30,11 +30,34 @@ describe('Test stage results', () => {
     expect(results.calculateScore(IPSC.Enums.POWER_FACTOR.MINOR, IPSC.Enums.RESULT.A)).toEqual(25);
     expect(results.calculateScore(IPSC.Enums.POWER_FACTOR.MINOR, IPSC.Enums.RESULT.C)).toEqual(9);
     expect(results.calculateScore(IPSC.Enums.POWER_FACTOR.MINOR, IPSC.Enums.RESULT.D)).toEqual(1);
+    expect(results.calculateScores(IPSC.Enums.POWER_FACTOR.MINOR)).toEqual(25);
 
     expect(results.calculateScore(IPSC.Enums.POWER_FACTOR.MAJOR, IPSC.Enums.RESULT.A)).toEqual(25);
     expect(results.calculateScore(IPSC.Enums.POWER_FACTOR.MAJOR, IPSC.Enums.RESULT.C)).toEqual(12);
     expect(results.calculateScore(IPSC.Enums.POWER_FACTOR.MAJOR, IPSC.Enums.RESULT.D)).toEqual(2);
+    expect(results.calculateScores(IPSC.Enums.POWER_FACTOR.MAJOR)).toEqual(29);
+  })
 
-    expect(results.calculateScores(IPSC.Enums.POWER_FACTOR.MINOR)).toEqual(25);
+  it('Calculate score - bad result', () => {
+    var results = new StageResults();
+    results.addResult(IPSC.Enums.RESULT.A, 1);
+    results.addResult(IPSC.Enums.RESULT.C, 4);
+    results.addResult(IPSC.Enums.RESULT.D, 3);
+    results.addResult(IPSC.Enums.RESULT.NS, 1);
+    results.addResult(IPSC.Enums.RESULT.MISS, 1);
+
+    expect(results.calculateScores(IPSC.Enums.POWER_FACTOR.MINOR)).toEqual(0);
+    expect(results.calculateScores(IPSC.Enums.POWER_FACTOR.MAJOR)).toEqual(7);
+  })
+
+  it('Calculate hit factor', () => {
+    var results = new StageResults();
+    results.addResult(IPSC.Enums.RESULT.A, 5);
+    results.addResult(IPSC.Enums.RESULT.C, 3);
+    results.addResult(IPSC.Enums.RESULT.D, 1);
+    results.addResult(IPSC.Enums.RESULT.NS, 1);
+
+    expect(results.calculateHitFactor(IPSC.Enums.POWER_FACTOR.MINOR, 5)).toEqual((5.).toFixed(4));
+    expect(results.calculateHitFactor(IPSC.Enums.POWER_FACTOR.MAJOR, 5.8)).toEqual((5.).toFixed(4));
   })
 });

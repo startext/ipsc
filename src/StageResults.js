@@ -18,28 +18,21 @@ class StageResults {
     return count ? count : 0;
   }
 
-  calculateScore(factor, result) {
-    var score = Functions.getResultScore(factor, result);
+  calculateScore(powerFactor, result) {
+    var score = Functions.getResultScore(powerFactor, result);
     const r = score * this.getResult(result);
-    // console.log("factor:", factor, "result:", result, "result:", r)
     return r;
   }
 
-  calculateScores(factor) {
-    Functions.checkPowerFactorType(factor);
-    // console.log("Result A:", this.getResult(Enums.RESULT.A));
-    // console.log("Result C:", this.getResult(Enums.RESULT.C));
-    // console.log("Result D:", this.getResult(Enums.RESULT.D));
-    // console.log("Result NS:", this.getResult(Enums.RESULT.NS));
+  calculateScores(powerFactor) {
+    Functions.checkPowerFactorType(powerFactor);    
+    return Math.max(Object.values(Enums.RESULT).reduce((acc, val) => acc + this.calculateScore(powerFactor, val), 0), 0);
+  }
 
-    // console.log("Results:", this.results);
-    // console.log("Keys:", Object.keys(this.results));
-    // console.log("Values:", Object.values(this.results));
-    
-    return Math.max(Object.values(Enums.RESULT).reduce((acc, val) => {
-      acc += this.calculateScore(factor, val);
-      return acc;
-    }, 0), 0);    
+  calculateHitFactor(powerFactor, time) {
+    Functions.checkPowerFactorType(powerFactor);
+    const score = this.calculateScores(powerFactor);
+    return score && time ? (score / time).toFixed(4) : 0;
   }
 }
 
