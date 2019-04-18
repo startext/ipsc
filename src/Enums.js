@@ -33,7 +33,14 @@ const RATES = Object.freeze({
   }
 });
 
-exports.POWER_FACTOR = POWER_FACTOR;
-exports.RESULT = RESULT;
-exports.RATES = RATES;
+module.exports.POWER_FACTOR = POWER_FACTOR;
+module.exports.isPowerFactor = (obj) => {
+  return obj && Object.values(POWER_FACTOR).includes(obj);
+};
 
+module.exports.RESULT = RESULT;
+module.exports.isResult = (obj) => {
+  return obj && Object.values(RESULT).includes(obj);
+};
+
+module.exports.RATES = RATES;
