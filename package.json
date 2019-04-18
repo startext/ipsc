@@ -1,0 +1,27 @@
+{
+  "name": "@startext/ipsc",
+  "version": "0.0.1",
+  "main": "src/index.js",
+  "files": [
+    "src/",
+    "README.adoc"
+  ],
+  "devDependencies": {
+    "@babel/cli": "^7.4.3",
+    "jasmine": "^3.4.0"
+  },
+  "description": "Base primitives for scoring",
+  "keywords": [ "IPSC", "stage", "training" ],
+  "license": "MIT",
+  "publishConfig": {
+    "registry": "https://startext.ru:4873/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.startext.ru/npm/ipsc"
+  },
+  "scripts": {
+    "build": "rm -rf lib && NODE_ENV=production babel src/lib --out-dir lib --copy-files --ignore __tests__,spec.js,test.js,__snapshots__",
+    "test": "jasmine"
+  }
+}
