@@ -1,16 +1,60 @@
 'use strict';
 
 const Enums = require('./Enums');
+const StageResults = require('./StageResults');
+
+function checkClassType(obj, clazz) {
+  if (!(obj instanceof clazz))
+    throw new TypeError(obj);
+}
+
+function __isEnumMember(en, obj) {
+  return obj && Object.values(en).includes(obj);
+}
+
+function __checkEnumMemberType(en, obj) {
+  if (!__isEnumMember(en, obj))
+    throw new TypeError(obj);
+}
+
+function isPowerFactor(obj) {
+  return __isEnumMember(Enums.POWER_FACTOR, obj);
+};
+
+function checkPowerFactorType(obj) {
+  __checkEnumMemberType(Enums.POWER_FACTOR, obj);
+}
+
+function isResult(obj) {
+  return __isEnumMember(Enums.RESULT, obj);
+};
+
+function checkResultType(obj) {
+  __checkEnumMemberType(Enums.RESULT, obj);
+}
+
+// power factor functions
+
+exports.isPowerFactor = isPowerFactor;
+exports.checkPowerFactorType = checkPowerFactorType;
+exports.checkClassType = checkClassType;
+
+// stage result functions
+
+exports.isResult = isResult;
+exports.checkResultType = checkResultType;
 
 exports.getResultScore = function(factor, result) {
-  if (!Enums.RATES.hasOwnProperty(factor))
-    throw new Error("Unsupported power factor: " + factor);
+  checkPowerFactorType(factor);
+  checkResultType(result);
 
   const powerFactorRates = Enums.RATES[factor];
   console.assert(powerFactorRates);
 
-  if (!powerFactorRates.hasOwnProperty(result))
-    throw new Error("Unsupported result: " + Symbol.keyFor(result));
-
   return powerFactorRates[result];
+}
+
+exports.calculateResultScores = function(factor, results) {
+  checkPowerFactorType(factor);
+  checkClassType(results, StageResults);
 }

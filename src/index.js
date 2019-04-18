@@ -1,3 +1,3 @@
-module.exports.ENUMS = require('./Enums');
-module.exports.FUNCTIONS = require('./Functions');
+module.exports.Enums = require('./Enums');
+module.exports.Functions = require('./Functions');
 module.exports.StageResults = require('./StageResults');

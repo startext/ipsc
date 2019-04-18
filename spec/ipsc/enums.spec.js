@@ -3,33 +3,33 @@ var Functions = require('../../src/Functions');
 
 describe('Test enums', () => {
   it('Test power factor enum', () => {
-    expect(Enums.isPowerFactor(Enums.POWER_FACTOR.MAJOR)).toBeTruthy();
-    expect(Enums.isPowerFactor(Enums.POWER_FACTOR.MINOR)).toBeTruthy();
+    expect(Functions.isPowerFactor(Enums.POWER_FACTOR.MAJOR)).toBeTruthy();
+    expect(Functions.isPowerFactor(Enums.POWER_FACTOR.MINOR)).toBeTruthy();
 
-    expect(Enums.isPowerFactor(null)).toBeFalsy();
-    expect(Enums.isPowerFactor(undefined)).toBeFalsy();
-    expect(Enums.isPowerFactor('MAJOR')).toBeFalsy();
-    expect(Enums.isPowerFactor('MINOR')).toBeFalsy();
-    expect(Enums.isPowerFactor(1)).toBeFalsy();
+    expect(Functions.isPowerFactor(null)).toBeFalsy();
+    expect(Functions.isPowerFactor(undefined)).toBeFalsy();
+    expect(Functions.isPowerFactor('MAJOR')).toBeFalsy();
+    expect(Functions.isPowerFactor('MINOR')).toBeFalsy();
+    expect(Functions.isPowerFactor(1)).toBeFalsy();
   });
 
   it('Test result enum', () => {
-    expect(Enums.isResult(Enums.RESULT.A)).toBeTruthy();
-    expect(Enums.isResult(Enums.RESULT.C)).toBeTruthy();
-    expect(Enums.isResult(Enums.RESULT.D)).toBeTruthy();
-    expect(Enums.isResult(Enums.RESULT.MISS)).toBeTruthy();
-    expect(Enums.isResult(Enums.RESULT.NS)).toBeTruthy();
-    expect(Enums.isResult(Enums.RESULT.PENALTY)).toBeTruthy();
+    expect(Functions.isResult(Enums.RESULT.A)).toBeTruthy();
+    expect(Functions.isResult(Enums.RESULT.C)).toBeTruthy();
+    expect(Functions.isResult(Enums.RESULT.D)).toBeTruthy();
+    expect(Functions.isResult(Enums.RESULT.MISS)).toBeTruthy();
+    expect(Functions.isResult(Enums.RESULT.NS)).toBeTruthy();
+    expect(Functions.isResult(Enums.RESULT.PENALTY)).toBeTruthy();
 
-    expect(Enums.isResult(null)).toBeFalsy();
-    expect(Enums.isResult(undefined)).toBeFalsy();
-    expect(Enums.isResult('A')).toBeFalsy();
-    expect(Enums.isResult('C')).toBeFalsy();
-    expect(Enums.isResult('D')).toBeFalsy();
-    expect(Enums.isResult('MISS')).toBeFalsy();
-    expect(Enums.isResult('NS')).toBeFalsy();
-    expect(Enums.isResult('PENALTY')).toBeFalsy();
-    expect(Enums.isResult(1)).toBeFalsy();
+    expect(Functions.isResult(null)).toBeFalsy();
+    expect(Functions.isResult(undefined)).toBeFalsy();
+    expect(Functions.isResult('A')).toBeFalsy();
+    expect(Functions.isResult('C')).toBeFalsy();
+    expect(Functions.isResult('D')).toBeFalsy();
+    expect(Functions.isResult('MISS')).toBeFalsy();
+    expect(Functions.isResult('NS')).toBeFalsy();
+    expect(Functions.isResult('PENALTY')).toBeFalsy();
+    expect(Functions.isResult(1)).toBeFalsy();
   });
 });
 

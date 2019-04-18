@@ -10,16 +10,13 @@
     "@babel/cli": "^7.4.3",
     "jasmine": "^3.4.0"
   },
-  "description": "Base primitives for scoring",
+  "description": "Base primitives for IPSC scoring",
   "keywords": [
     "IPSC",
     "stage",
     "training"
   ],
   "license": "MIT",
-  "publishConfig": {
-    "registry": "https://startext.ru:4873/"
-  },
   "repository": {
     "type": "git",
     "url": "https://git.startext.ru/npm/ipsc"
