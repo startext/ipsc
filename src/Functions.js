@@ -1,11 +1,12 @@
 'use strict';
 
 const Enums = require('./Enums');
-const StageResults = require('./StageResults');
+
+// Functions
 
 function checkClassType(obj, clazz) {
   if (!(obj instanceof clazz))
-    throw new TypeError(obj);
+    throw new TypeError('Expected type:' + typeof clazz + ", current type: " + typeof obj);
 }
 
 function __isEnumMember(en, obj) {
@@ -18,43 +19,45 @@ function __checkEnumMemberType(en, obj) {
 }
 
 function isPowerFactor(obj) {
-  return __isEnumMember(Enums.POWER_FACTOR, obj);
+  return __isEnumMember(Enums.PowerFactors, obj);
 };
 
 function checkPowerFactorType(obj) {
-  __checkEnumMemberType(Enums.POWER_FACTOR, obj);
+  __checkEnumMemberType(Enums.PowerFactors, obj);
 }
 
 function isResult(obj) {
-  return __isEnumMember(Enums.RESULT, obj);
+  return __isEnumMember(Enums.Results, obj);
 };
 
 function checkResultType(obj) {
-  __checkEnumMemberType(Enums.RESULT, obj);
+  __checkEnumMemberType(Enums.Results, obj);
 }
 
-// power factor functions
-
-exports.isPowerFactor = isPowerFactor;
-exports.checkPowerFactorType = checkPowerFactorType;
-exports.checkClassType = checkClassType;
-
-// stage result functions
-
-exports.isResult = isResult;
-exports.checkResultType = checkResultType;
-
-exports.getResultScore = function(factor, result) {
+function getResultScore(factor, result) {
   checkPowerFactorType(factor);
   checkResultType(result);
 
-  const powerFactorRates = Enums.RATES[factor];
+  // console.log("power factor:", factor);
+  // console.log("result:", result);
+  
+  const powerFactorRates = Enums.Rates[factor];
   console.assert(powerFactorRates);
 
   return powerFactorRates[result];
 }
 
-exports.calculateResultScores = function(factor, results) {
+function calculateResultScores(factor, results) {
   checkPowerFactorType(factor);
   checkClassType(results, StageResults);
+}
+
+module.exports = {
+  isPowerFactor,
+  isResult,
+  checkClassType,
+  checkPowerFactorType,
+  checkResultType,
+  getResultScore,
+  calculateResultScores
 }

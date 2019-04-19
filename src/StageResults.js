@@ -1,5 +1,7 @@
-var Enums = require('./Enums');
-var Functions = require('./Functions');
+'use strict';
+
+const Enums = require('./Enums');
+const Functions = require('./Functions');
 
 class StageResults {
   constructor() {
@@ -26,7 +28,7 @@ class StageResults {
 
   calculateScores(powerFactor) {
     Functions.checkPowerFactorType(powerFactor);    
-    return Math.max(Object.values(Enums.RESULT).reduce((acc, val) => acc + this.calculateScore(powerFactor, val), 0), 0);
+    return Math.max(Object.values(Enums.Results).reduce((acc, val) => acc + this.calculateScore(powerFactor, val), 0), 0);
   }
 
   calculateHitFactor(powerFactor, time) {

@@ -1,3 +1,7 @@
-module.exports.Enums = require('./Enums');
-module.exports.Functions = require('./Functions');
-module.exports.StageResults = require('./StageResults');
+'use strict';
+
+module.exports = {
+  Enums: require('./Enums'),
+  Functions: require('./Functions'),
+  StageResults: require('./StageResults')
+};

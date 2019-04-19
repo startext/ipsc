@@ -1,11 +1,13 @@
-'use strict';
 
-const POWER_FACTOR = Object.freeze({
-  MINOR: Symbol('Minor'),
-  MAJOR: Symbol('Major')
+const PowerFactor_MINOR = 'MINOR';
+const PowerFactor_MAJOR = 'MAJOR';
+
+const PowerFactors = Object.freeze({
+  [ PowerFactor_MINOR ]: Symbol(PowerFactor_MINOR),
+  [ PowerFactor_MAJOR ]: Symbol(PowerFactor_MAJOR)
 });
 
-const RESULT = Object.freeze({
+const Results = Object.freeze({
   A: Symbol('A'),
   C: Symbol('C'),
   D: Symbol('D'),
@@ -14,27 +16,27 @@ const RESULT = Object.freeze({
   PENALTY: Symbol('Penalty')
 });
 
-const RATES = Object.freeze({
-  [ POWER_FACTOR.MINOR ] : {
-    [ RESULT.A ]: 5,
-    [ RESULT.C ]: 3,
-    [ RESULT.D ]: 1,
-    [ RESULT.MISS ]: -10,
-    [ RESULT.NS ]: -10,
-    [ RESULT.PENALTY ]: -10
+const Rates = Object.freeze({
+  [ PowerFactors.MINOR ] : {
+    [ Results.A ]: 5,
+    [ Results.C ]: 3,
+    [ Results.D ]: 1,
+    [ Results.MISS ]: -10,
+    [ Results.NS ]: -10,
+    [ Results.PENALTY ]: -10
   },
-  [ POWER_FACTOR.MAJOR ] : {
-    [ RESULT.A ]: 5,
-    [ RESULT.C ]: 4,
-    [ RESULT.D ]: 2,
-    [ RESULT.MISS ]: -10,
-    [ RESULT.NS ]: -10,
-    [ RESULT.PENALTY ]: -10
+  [ PowerFactors.MAJOR ] : {
+    [ Results.A ]: 5,
+    [ Results.C ]: 4,
+    [ Results.D ]: 2,
+    [ Results.MISS ]: -10,
+    [ Results.NS ]: -10,
+    [ Results.PENALTY ]: -10
   }
 });
 
-exports.POWER_FACTOR = POWER_FACTOR;
-
-exports.RESULT = RESULT;
-
-exports.RATES = RATES;
+module.exports = {
+  PowerFactors,
+  Results,
+  Rates
+}
