@@ -1,7 +1,6 @@
 'use strict';
 
 const Enums = require('./Enums');
-const Functions = require('./Functions');
 
 class StageResults {
   constructor() {
@@ -9,30 +8,30 @@ class StageResults {
   }
 
   addResult(result, count) {
-    Functions.checkResultType(result)
+    Enums.checkResultType(result)
     if (count < 0) throw new Error("Expected positive number");
     this.results[result] = count;
   }
 
   getResult(result) {
-    Functions.checkResultType(result)
+    Enums.checkResultType(result)
     const count = this.results[result];
     return count ? count : 0;
   }
 
   calculateScore(powerFactor, result) {
-    var score = Functions.getResultScore(powerFactor, result);
+    var score = Enums.getResultScore(powerFactor, result);
     const r = score * this.getResult(result);
     return r;
   }
 
   calculateScores(powerFactor) {
-    Functions.checkPowerFactorType(powerFactor);    
+    Enums.checkPowerFactorType(powerFactor);    
     return Math.max(Object.values(Enums.Results).reduce((acc, val) => acc + this.calculateScore(powerFactor, val), 0), 0);
   }
 
   calculateHitFactor(powerFactor, time) {
-    Functions.checkPowerFactorType(powerFactor);
+    Enums.checkPowerFactorType(powerFactor);
     const score = this.calculateScores(powerFactor);
     return score && time ? (score / time).toFixed(4) : 0;
   }
