@@ -1,3 +1,4 @@
+'use strict';
 
 const PowerFactor_MINOR = 'MINOR';
 const PowerFactor_MAJOR = 'MAJOR';
@@ -20,20 +21,30 @@ function __isEnumKey(en, obj) {
   return en && obj && Object.keys(en).includes(obj);
 }
 
-function getEnumValue(en, name) {
-  if (!__isEnumKey(en, name))
-    throw new TypeError(name + " is not key of enum " + typeof en);
+function __getEnumValue(en, name) {
+  if (!__isEnumKey(en, name)) {
+    if (__isEnumValue(en, name)) {
+      return name;
+    }
+    throw new TypeError(name + " is not key of enum: " + JSON.stringify(en));
+  }
 
   console.assert(en[name]);
   return en[name];
 }
 
 const PowerFactor = {
-  of: function(name) { return getEnumValue(PowerFactors, name); }
+  of: function(name) { 
+    console.assert(name, "name is undefined");
+    return __getEnumValue(PowerFactors, name);
+  }
 }
 
 const Result = {
-  of: function(name) { return getEnumValue(Results, name); }
+  of: function(name) {
+    console.assert(name, "name is undefined");
+    return __getEnumValue(Results, name);
+  }
 }
 
 const Rates = Object.freeze({

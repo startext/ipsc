@@ -8,14 +8,20 @@ describe('Test enums - power factor', () => {
     expect(Enums.PowerFactors['MINOR']).toEqual(Enums.PowerFactors.MINOR);
   })
 
-  it('Test enum: result', () => {
+  it('Test enum: Results direct access by name', () => {
     expect(Enums.Results['A']).toEqual(Enums.Results.A);
     expect(Enums.Results['C']).toEqual(Enums.Results.C);
   })
 
-  it('Test enum: result 2', () => {
+  it('Test enum: Result.of()', () => {
     expect(Enums.Result.of('A')).toEqual(Enums.Results.A);
     expect(Enums.Result.of('C')).toEqual(Enums.Results.C);
+
+    expect(Enums.Result.of(Enums.Results.A)).toEqual(Enums.Results.A);
+    expect(Enums.Result.of(Enums.Results.NS)).toEqual(Enums.Results.NS);
+
+    expect(function() { Enums.Result.of('a') }).toThrow();
+    expect(function() { Enums.Result.of('null') }).toThrow();
   })
 
   it('Test power factor enum', () => {
@@ -27,7 +33,18 @@ describe('Test enums - power factor', () => {
     expect(Enums.isPowerFactor('MAJOR')).toBeFalsy();
     expect(Enums.isPowerFactor('MINOR')).toBeFalsy();
     expect(Enums.isPowerFactor(1)).toBeFalsy();
-  });
+  })
+
+  it('Test enum: PowerFactor.of()', () => {
+    expect(Enums.PowerFactor.of('MINOR')).toEqual(Enums.PowerFactors.MINOR);
+    expect(Enums.PowerFactor.of('MAJOR')).toEqual(Enums.PowerFactors.MAJOR);
+
+    expect(Enums.PowerFactor.of(Enums.PowerFactors.MINOR)).toEqual(Enums.PowerFactors.MINOR);
+    expect(Enums.PowerFactor.of(Enums.PowerFactors.MAJOR)).toEqual(Enums.PowerFactors.MAJOR);
+
+    expect(function() { Enums.PowerFactor.of('a') }).toThrow();
+    expect(function() { Enums.PowerFactor.of('null') }).toThrow();
+  })
 
   it('Test isResult function', () => {
     expect(Enums.isResult(Enums.Results.A)).toBeTruthy();
