@@ -7,7 +7,7 @@
     "README.adoc"
   ],
   "devDependencies": {
-    "@babel/cli": "^7.4.3",
+    "@babel/cli": "^7.5.0",
     "jasmine": "^3.4.0"
   },
   "description": "Base primitives for IPSC scoring",
