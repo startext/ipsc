@@ -1,2 +1,47 @@
-# ipsc
+# IPSC primitives
 
+Main aim of library to provide basic primitives for IPSC results processing.
+
+## Enums
+
+### Power factor
+
+We supports now 2 power factors: `MINOR` and `MAJOR`.
+
+Usage example:
+
+[source,javascript]
+----
+import { Enums } from '@startext/ipsc';
+
+class CountPage extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      powerFactor: Enums.PowerFactors.MINOR
+    };
+  }
+}
+----
+
+### Results
+
+For stage results counting we supports the following types: `A`, `C`, `D`, `No shoot`, `Miss`, `Penalty`.
+Counting of them depends on power factor.
+
+Usage example:
+
+[source,javascript]
+----
+import { Enums, StageResults } from '@startext/ipsc';
+
+let results = new StageResults();
+results.addResult(Enums.Results.A, 5);
+results.addResult(Enums.Results.C, 3);
+results.addResult(Enums.Results.D, 1);
+results.addResult(Enums.Results.NS, 1);
+
+let points = results.calculateScores(Enums.PowerFactors.MINOR)
+let hitfactor = results.calculateHitFactor(Enums.PowerFactors.MAJOR, 5.8);
+----
