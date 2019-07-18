@@ -1,14 +1,18 @@
 {
   "name": "@startext/ipsc",
-  "version": "0.0.6",
-  "main": "src/index.js",
+  "version": "0.0.7",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
   "files": [
-    "src/",
+    "dist/",
     "README.adoc"
   ],
   "devDependencies": {
     "@babel/cli": "^7.5.5",
-    "jasmine": "^3.4.0"
+    "@babel/core": "^7.5.5",
+    "cross-env": "^5.2.0",
+    "jasmine": "^3.4.0",
+    "rimraf": "^2.6.3"
   },
   "description": "Base primitives for IPSC scoring",
   "keywords": [
@@ -22,7 +26,8 @@
     "url": "https://github.com/startext/ipsc"
   },
   "scripts": {
-    "build": "rm -rf lib && NODE_ENV=production babel src/lib --out-dir lib --copy-files --ignore __tests__,spec.js,test.js,__snapshots__",
+    "prebuild": "rimraf dist",
+    "build": "rm -rf lib && NODE_ENV=production babel src --out-dir dist --copy-files --ignore __tests__,spec.js,test.js,__snapshots__",
     "test": "jasmine"
   }
 }
