@@ -2,37 +2,10 @@
 
 var { Enums, Results, Functions, PowerFactors } = require('../../src');
 
-describe('Test enums - power factor', () => {
+describe('Test enums: power factor', () => {
   it('Test enum - power factor', () => {
     expect(Enums.PowerFactors['MAJOR']).toEqual(Enums.PowerFactors.MAJOR);
     expect(Enums.PowerFactors['MINOR']).toEqual(Enums.PowerFactors.MINOR);
-  })
-
-  it('Test enum: Results direct access by name', () => {
-    expect(Enums.Results['A']).toEqual(Enums.Results.A);
-    expect(Enums.Results['C']).toEqual(Enums.Results.C);
-  })
-
-  it('Test enum: Result.of()', () => {
-    expect(Enums.Result.of('A')).toEqual(Enums.Results.A);
-    expect(Enums.Result.of('C')).toEqual(Enums.Results.C);
-
-    expect(Enums.Result.of(Enums.Results.A)).toEqual(Enums.Results.A);
-    expect(Enums.Result.of(Enums.Results.NS)).toEqual(Enums.Results.NS);
-
-    expect(function() { Enums.Result.of('a') }).toThrow();
-    expect(function() { Enums.Result.of('null') }).toThrow();
-  })
-
-  it('Test power factor enum', () => {
-    expect(Enums.isPowerFactor(Enums.PowerFactors.MAJOR)).toBeTruthy();
-    expect(Enums.isPowerFactor(Enums.PowerFactors.MINOR)).toBeTruthy();
-
-    expect(Enums.isPowerFactor(null)).toBeFalsy();
-    expect(Enums.isPowerFactor(undefined)).toBeFalsy();
-    expect(Enums.isPowerFactor('MAJOR')).toBeFalsy();
-    expect(Enums.isPowerFactor('MINOR')).toBeFalsy();
-    expect(Enums.isPowerFactor(1)).toBeFalsy();
   })
 
   it('Test enum: PowerFactor.of()', () => {
@@ -46,7 +19,36 @@ describe('Test enums - power factor', () => {
     expect(function() { Enums.PowerFactor.of('null') }).toThrow();
   })
 
-  it('Test isResult function', () => {
+  it('Test enum: Enums.isPowerFactor()', () => {
+    expect(Enums.isPowerFactor(Enums.PowerFactors.MAJOR)).toBeTruthy();
+    expect(Enums.isPowerFactor(Enums.PowerFactors.MINOR)).toBeTruthy();
+
+    expect(Enums.isPowerFactor(null)).toBeFalsy();
+    expect(Enums.isPowerFactor(undefined)).toBeFalsy();
+    expect(Enums.isPowerFactor('MAJOR')).toBeFalsy();
+    expect(Enums.isPowerFactor('MINOR')).toBeFalsy();
+    expect(Enums.isPowerFactor(1)).toBeFalsy();
+  })
+});
+
+describe('Test enums: stage results', () => {
+  it('Test enum: Results direct access by name', () => {
+    expect(Enums.Results['A']).toEqual(Enums.Results.A);
+    expect(Enums.Results['C']).toEqual(Enums.Results.C);
+  })
+
+  it('Test Result.of() function', () => {
+    expect(Enums.Result.of('A')).toEqual(Enums.Results.A);
+    expect(Enums.Result.of('C')).toEqual(Enums.Results.C);
+
+    expect(Enums.Result.of(Enums.Results.A)).toEqual(Enums.Results.A);
+    expect(Enums.Result.of(Enums.Results.NS)).toEqual(Enums.Results.NS);
+
+    expect(function() { Enums.Result.of('a') }).toThrow();
+    expect(function() { Enums.Result.of('null') }).toThrow();
+  })
+
+  it('Test Enums.isResult() function', () => {
     expect(Enums.isResult(Enums.Results.A)).toBeTruthy();
     expect(Enums.isResult(Enums.Results.C)).toBeTruthy();
     expect(Enums.isResult(Enums.Results.D)).toBeTruthy();
@@ -64,6 +66,28 @@ describe('Test enums - power factor', () => {
     expect(Enums.isResult('PENALTY')).toBeFalsy();
     expect(Enums.isResult(1)).toBeFalsy();
   });
+});
+
+describe('Test enums: target types', () => {
+  it('Test enum - target types', () => {
+    expect(Enums.TargetTypes['PAPER_TARGER']).toEqual(Enums.TargetTypes.PAPER_TARGER);
+    expect(Enums.TargetTypes['PLATE']).toEqual(Enums.TargetTypes.PLATE);
+    expect(Enums.TargetTypes['POPPER']).toEqual(Enums.TargetTypes.POPPER);
+  })
+
+  it('Test TargetType.of() function', () => {
+    expect(Enums.TargetType.of('PAPER_TARGER')).toEqual(Enums.TargetTypes.PAPER_TARGER);
+    expect(Enums.TargetType.of('PLATE')).toEqual(Enums.TargetTypes.PLATE);
+    expect(Enums.TargetType.of('POPPER')).toEqual(Enums.TargetTypes.POPPER);
+
+    expect(Enums.TargetType.of(Enums.TargetTypes.PAPER_TARGER)).toEqual(Enums.TargetTypes.PAPER_TARGER);
+    expect(Enums.TargetType.of(Enums.TargetTypes.PLATE)).toEqual(Enums.TargetTypes.PLATE);
+    expect(Enums.TargetType.of(Enums.TargetTypes.POPPER)).toEqual(Enums.TargetTypes.POPPER);
+
+    expect(function() { Enums.TargetType.of('a') }).toThrow();
+    expect(function() { Enums.TargetType.of('null') }).toThrow();
+  })
+
 });
 
 describe('Test IPSC scores', () => {

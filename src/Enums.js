@@ -1,5 +1,7 @@
 'use strict';
 
+// Power factor
+
 const PowerFactor_MINOR = 'MINOR';
 const PowerFactor_MAJOR = 'MAJOR';
 
@@ -7,6 +9,15 @@ const PowerFactors = Object.freeze({
   [ PowerFactor_MINOR ]: Symbol(PowerFactor_MINOR),
   [ PowerFactor_MAJOR ]: Symbol(PowerFactor_MAJOR)
 });
+
+const PowerFactor = {
+  of: function(name) {
+    console.assert(name, "name is undefined");
+    return __getEnumValue(PowerFactors, name);
+  }
+}
+
+// Stage results
 
 const Results = Object.freeze({
   A: Symbol('A'),
@@ -17,35 +28,14 @@ const Results = Object.freeze({
   PENALTY: Symbol('Penalty')
 });
 
-function __isEnumKey(en, obj) {
-  return en && obj && Object.keys(en).includes(obj);
-}
-
-function __getEnumValue(en, name) {
-  if (!__isEnumKey(en, name)) {
-    if (__isEnumValue(en, name)) {
-      return name;
-    }
-    throw new TypeError(name + " is not key of enum: " + JSON.stringify(en));
-  }
-
-  console.assert(en[name]);
-  return en[name];
-}
-
-const PowerFactor = {
-  of: function(name) { 
-    console.assert(name, "name is undefined");
-    return __getEnumValue(PowerFactors, name);
-  }
-}
-
 const Result = {
   of: function(name) {
     console.assert(name, "name is undefined");
     return __getEnumValue(Results, name);
   }
 }
+
+// Rates
 
 const Rates = Object.freeze({
   [ PowerFactors.MINOR ] : {
@@ -66,11 +56,38 @@ const Rates = Object.freeze({
   }
 });
 
-// Functions
+// Target types
 
-function checkClassType(obj, clazz) {
-  if (!(obj instanceof clazz))
-    throw new TypeError('Expected type:' + typeof clazz + ", current type: " + typeof obj);
+const TargetTypes = Object.freeze({
+  PAPER_TARGER: Symbol('Paper target'),
+  PLATE: Symbol('Plate'),
+  POPPER: Symbol('Popper')
+});
+
+const TargetType = {
+  of: function(name) {
+    console.assert(name, "name is undefined");
+    return __getEnumValue(TargetTypes, name);
+  }
+}
+
+
+// Helper functions
+
+function __isEnumKey(en, obj) {
+  return en && obj && Object.keys(en).includes(obj);
+}
+
+function __getEnumValue(en, name) {
+  if (!__isEnumKey(en, name)) {
+    if (__isEnumValue(en, name)) {
+      return name;
+    }
+    throw new TypeError(name + " is not key of enum: " + JSON.stringify(en));
+  }
+
+  console.assert(en[name]);
+  return en[name];
 }
 
 function __isEnumValue(en, obj) {
@@ -80,6 +97,14 @@ function __isEnumValue(en, obj) {
 function __checkEnumMemberType(en, obj) {
   if (!__isEnumValue(en, obj))
     throw new TypeError(obj);
+}
+
+
+// Public functions
+
+function checkClassType(obj, clazz) {
+  if (!(obj instanceof clazz))
+    throw new TypeError('Expected type:' + typeof clazz + ", current type: " + typeof obj);
 }
 
 function isPowerFactor(obj) {
@@ -92,6 +117,10 @@ function checkPowerFactorType(obj) {
 
 function isResult(obj) {
   return __isEnumValue(Results, obj);
+};
+
+function isTargetType(obj) {
+  return __isEnumValue(TargetTypes, obj);
 };
 
 function checkResultType(obj) {
@@ -115,10 +144,13 @@ module.exports = {
   Results,
   Result,
   Rates,
+  TargetTypes,
+  TargetType,
 
   // enum functions
   isPowerFactor,
   isResult,
+  isTargetType,
   checkClassType,
   checkPowerFactorType,
   checkResultType,
