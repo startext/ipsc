@@ -71,6 +71,13 @@ const TargetType = {
   }
 }
 
+// default amount of shoots for each target type
+
+const TargetTypeShoots = Object.freeze({
+  [ TargetTypes.PAPER_TARGER ]: 2,
+  [ TargetTypes.PLATE ]: 1,
+  [ TargetTypes.POPPER ]: 1
+});
 
 // Helper functions
 
@@ -146,6 +153,7 @@ module.exports = {
   Rates,
   TargetTypes,
   TargetType,
+  TargetTypeShoots,
 
   // enum functions
   isPowerFactor,
